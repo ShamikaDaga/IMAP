@@ -1,0 +1,240 @@
+<html>
+
+
+{% load static %}<head>
+    <title>BlissBox</title>
+    <link href="{% static 'css/piespage.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/04b202718e.js" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</head>
+<style>
+    #banner2 {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        width: 35%;
+        height: 40%;
+        transform: translate(-50%, -50%);
+        background-color: #fff;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 25px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        z-index: 9999;
+        text-align: center;
+
+    }
+</style>
+<style>
+#banner2 {
+    display: none;
+    position: fixed;
+    top: 27%;
+    left: 85%;
+    width: 29%;
+    height: 33%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 25px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 9999;
+    text-align: center;
+    text-align: justify;
+    padding-left: 4%;
+
+}
+</style>
+<div id="banner2">
+    <h3>Contact Us</h3>
+    <h4> Feel free to contact us<br>
+        ojas.sharma032@nmims.edu.in<br>
+        shamika.daga022@nmims.edu.in<br>
+        tanusha.daga026@nmims.edu.in<br>
+        
+    </h4>
+</div>
+<body class="body">
+
+    <div class="fullhomepg">
+        <div id="myOverlay" class="overlay" style="width: 0;">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+            <div class="overlay-content">
+                <a href="#">About us</a>
+                <a href="productpage.html">Products</a>
+                <a href="#">Contact us</a>
+            </div>
+        </div>
+
+        <nav class="navbar navbar-default">
+
+            <div class="container-fluid">
+
+
+                <div class="navbar-header">
+                    <div class="container1" onclick="myFunction(this)">
+                        <div class="bar1"></div>
+                        <div class="bar2"></div>
+                        <div class="bar3"></div>
+                    </div>
+
+                </div>
+                <div>
+                    <a class="navbar-brand" href="{% url 'home' %}">
+                        <img src="{% static \'images/logo.png\' %}" alt="logo-image" class="logo">
+                    </a>
+                </div>
+
+                <form class="navbar-form navbar-left" action="">
+
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search" id="searchbar">
+                        <div class="input-group-btn">
+                            <button class="btn btn-default" type="submit" style="margin-left:44%">
+                                <i class="glyphicon glyphicon-search" style="color:lightgray"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+
+                <ul class="nav navbar-nav navbar-right" id="navbarmenu">
+                    <li><a href="{% url 'signup' %}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                    <li><a href="#"> Contact us</a></li>
+                    <li><a href="{% url 'wishlist' %}"> Shopping Box</a></li>
+                </ul>
+            </div>
+        </nav>
+
+
+        <div class="filters">
+            <a href="" class="filterbutton"><span class="glyphicon glyphicon-filter"></span> Filters</a>
+            <div class="filteroptions">
+                <label><input type="checkbox" class="filter" data-category="chocolate"> Chocolate</label>
+                <label><input type="checkbox" class="filter" data-category="fruit"> Fruit</label>
+                <label><input type="checkbox" class="filter" data-category="special"> Special</label>
+            </div>
+        </div>
+        <div class="product_container">
+            <div class="product_item" data-categories="chocolate">
+
+                <img src="{% static \'images/chocolatecupcake.jpg\' %}" class="product_image">
+                <h3 class="product_name">Chocolate Cupcake</h3>
+                <p class="price">Rs.95<button class="addbutton">ADD +</button></p>
+
+            </div>
+            <div class="product_item" data-categories="special">
+
+                <img src="{% static \'images/gingerbreadcupcake.jpg\' %}" class="product_image">
+                <h3 class="product_name">Gingerbread Cupcake</h3>
+                <p class="price">Rs.110<button class="addbutton">ADD +</button></p>
+
+            </div>
+
+            <div class="product_item" data-categories="fruit">
+
+                <img src="{% static \'images/blueberrymuffin.jpg\' %}" class="product_image">
+                <h3 class="product_name">Blueberry Muffin</h3>
+                <p class="price">Rs.150<button class="addbutton">ADD +</button></p>
+
+            </div>
+            <div class="product_item" data-categories="special">
+                <img src="{% static \'images/redvelvetcupcake.jpg\' %}" class="product_image">
+                <h3 class="product_name">Red Velvet Cupcake</h3>
+                <p class="price">Rs.80<button class="addbutton">ADD +</button></p>
+
+            </div>
+        </div>
+        <div class="product_container">
+            <div class="product_item" data-categories="fruit">
+
+                <img src="{% static \'images/pineapplemuffin.jpg\' %}" class="product_image" >
+                <h3 class="product_name">Pineapple Muffin</h3>
+                <p class="price">Rs.75<button class="addbutton">ADD +</button></p>
+
+            </div>
+
+            <div class="product_item" data-categories="special">
+
+                <img src="{% static \'images/blackvelvetcupcake.jpg\' %}" class="product_image" >
+                <h3 class="product_name">Black Velvet Cupcake</h3>
+                <p class="price">Rs.85<button class="addbutton">ADD +</button></p>
+
+            </div>
+            <div class="product_item" data-categories="lemon">
+
+                <img src="{% static \'images/lemonmuffin.jpg\' %}" class="product_image">
+                <h3 class="product_name">Lemmon Poppy Seed Muffin</h3>
+                <p class="price">Rs.50<button class="addbutton">ADD +</button></p>
+
+            </div>
+            <div class="product_item" data-categories="fruit chocolate">
+
+                <img src="{% static \'images/raspberrychocolatemuffin.jpg\' %}" class="product_image">
+                <h3 class="product_name">Raspberry Chocolate Muffin</h3>
+                <p class="price">Rs.200<button class="addbutton">ADD +</button></p>
+
+            </div>
+        </div>
+    </div>
+    <div id="banner2">
+        <h3>Contact Us</h3>
+        <h4 > Feel free to contact us<br>
+            ojas.sharma032@nmims.edu.in<br>
+            shamikadaga022@nmims.edu.in<br>
+            tanushadaga026@nmims.edu.in<br>
+        </h4>
+    </div>
+    </div>
+    <script src="code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.filterbutton').click(function () {
+                $('.filteroptions').toggle();
+            });
+
+            $('.filter').change(function () {
+                updateProductDisplay();
+            });
+
+            function updateProductDisplay() {
+                var selectedFilters = $('.filter:checked').map(function () {
+                    return $(this).data('category');
+                }).get();
+
+                if (selectedFilters.length > 0) {
+                    $('.product_item').hide();
+                    selectedFilters.forEach(function (filter) {
+                        $('.product_item[data-categories*="' + filter + '"]').show();
+                    });
+                } else {
+                    $('.product_item').show();
+                }
+            }
+        });
+    </script>
+    <script>
+
+        // Event listener to show banner 2 on clicking "Contact Us"
+        $('#navbarmenu li a[href="#"]').click(function () {
+            $('#banner2').show();
+            $('#content-container').addClass('blur'); // Add blur class to content container
+        });
+
+        // Event listener to hide banner 2 on clicking outside of it
+        $(document).on('click', function (e) {
+            if (!$(e.target).closest('#banner2').length && !$(e.target).is('#navbarmenu li a[href="#"]')) {
+                $('#banner2').hide();
+                $('#content-container').removeClass('blur'); // Remove blur class from content container
+            }
+        });
+
+    </script>
+
+</body>

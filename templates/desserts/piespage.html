@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+
+<head>
+    <title>BlissBox</title>
+    <link href="{% static 'css/piespage.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/04b202718e.js" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* Banner Style */
+        #banner {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 25%;
+            height: 40%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 25px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            z-index: 9999;
+            text-align: center;
+
+        }
+        
+        
+#content-container {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    z-index: 9998; /* Lower z-index than the banner */
+}
+
+.blur {
+    filter: blur(5px); /* Adjust the blur amount as needed */
+    pointer-events: auto; /* Allow clicking on non-blurred elements */
+}
+
+
+
+        #banner h3 {
+            margin-bottom: 10px;
+            color: rgb(147, 48, 48);
+        }
+
+        /* Star Rating Styles */
+        .star-rating {
+            display: flex;
+            align-items: center;
+            margin-top: 5px;
+        }
+
+        .star-rating span {
+            font-size: 20px;
+            color: #FFD700;
+            margin-right: 3px;
+        }
+    </style>
+</head>
+
+<style>
+    #banner2 {
+        display: none;
+        position: fixed;
+        top: 27%;
+        left: 85%;
+        width: 29%;
+        height: 33%;
+        transform: translate(-50%, -50%);
+        background-color: #fff;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 25px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        z-index: 9999;
+        text-align: center;
+        text-align: justify;
+        padding-left: 4%;
+    
+    }
+    </style>
+    <div id="banner2">
+        <h3>Contact Us</h3>
+        <h4> Feel free to contact us<br>
+            ojas.sharma032@nmims.edu.in<br>
+            shamika.daga022@nmims.edu.in<br>
+            tanusha.daga026@nmims.edu.in<br>
+            
+        </h4>
+    </div>
+<body class="body">
+    <div id="content-container">
+        <div class="fullhomepg">
+        <div id="myOverlay" class="overlay" style="width: 0;">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+            <div class="overlay-content">
+                <a href="#">About us</a>
+                <a href="productpage.html">Products</a>
+                <a href="#">Contact us</a>
+            </div>
+        </div>
+
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <div class="container1" onclick="myFunction(this)">
+                        <div class="bar1"></div>
+                        <div class="bar2"></div>
+                        <div class="bar3"></div>
+                    </div>
+                </div>
+                <div>
+                    <a class="navbar-brand" href="{% url 'home' %}">
+                        <img src="{% static \'images/logo.png\' %}" alt="logo-image" class="logo">
+                    </a>
+                </div>
+
+                <form class="navbar-form navbar-left" action="">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search" id="searchbar">
+                        <div class="input-group-btn">
+                            <button class="btn btn-default" type="submit" style="margin-left:44%">
+                                <i class="glyphicon glyphicon-search" style="color:lightgray"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+
+                <ul class="nav navbar-nav navbar-right" id="navbarmenu">
+                    <li><a href="{% url 'signup' %}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                    <li><a href="#"> Contact us</a></li>
+                    <li><a href="{% url 'wishlist' %}"> Shopping Box</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="filters">
+            <a href="" class="filterbutton"><span class="glyphicon glyphicon-filter"></span> Filters</a>
+            <div class="filteroptions">
+                <label><input type="checkbox" class="filter" data-category="chocolate"> Chocolate</label>
+                <label><input type="checkbox" class="filter" data-category="fruit"> Fruit</label>
+            </div>
+        </div>
+        <div class="product_container">
+            <div class="product_item" data-price-per-serving="180" data-categories="fruit">
+                <img src="{% static \'images/strawberrypie.jpg\' %}" class="product_image">
+                <h3 class="product_name">Strawberry Pie</h3>
+                <div class="star-rating"></div> <!-- Star rating container -->
+                <p class="price">Rs.180<button class="addbutton" data-name="Strawberry Pie" data-price= '180'>ADD
+                        +</button></p>
+                        <!-- <select class="servings-dropdown">
+                            <option value="1">1 serving</option>
+                            <option value="2">2 servings</option>
+                            <option value="3">3 servings</option>
+                                Add more options as needed 
+                        </select> -->
+            </div>
+            
+            
+            <div class="product_item" data-categories="fruit">
+
+                <img src="{% static \'images/limepie.jpg\' %}" class="product_image">
+                <h3 class="product_name">Lime Pie</h3>
+                <div class="star-rating"></div> <!-- Star rating container -->
+                <p class="price">Rs.165<button class="addbutton" data-name="Lime Pie" data-price="165"
+                        id="add-to-cart-btn">ADD +</button></p>
+
+            </div>
+
+            <div class="product_item" data-categories="fruit">
+
+                <img src="{% static \'images/blueberrypie.jpg\' %}" class="product_image">
+                <h3 class="product_name">Blueberry Pie</h3>
+                <div class="star-rating"></div> <!-- Star rating container -->
+                <p class="price">Rs.220<button class="addbutton" data-name="Blueberry Pie" data-price="220"
+                        id="add-to-cart-btn">ADD +</button></p>
+
+            </div>
+            <div class="product_item" data-categories="fruit">
+                <img src="{% static \'images/peachpie.jpg\' %}" class="product_image">
+                <h3 class="product_name">Peach Pie</h3>
+                <div class="star-rating"></div> <!-- Star rating container -->
+                <p class="price">Rs.200<button class="addbutton" data-name="Peach Pie" data-price="200"
+                        id="add-to-cart-btn">ADD +</button></p>
+
+            </div>
+        </div>
+        <div class="product_container">
+            <div class="product_item" data-categories="fruit">
+
+                <img src="{% static \'images/applepieproduct.jpg\' %}" class="product_image">
+                <h3 class="product_name">Apple Pie</h3>
+                <div class="star-rating"></div> <!-- Star rating container -->
+                <p class="price">Rs.175<button class="addbutton" data-name="Apple Pie" data-price="175"
+                        id="add-to-cart-btn">ADD +</button></p>
+
+            </div>
+
+            <div class="product_item" data-categories="fruit">
+
+                <img src="{% static \'images/cherrypie.jpeg\' %}" class="product_image">
+                <h3 class="product_name">Cherry Pie</h3>
+                <div class="star-rating"></div> <!-- Star rating container -->
+                <p class="price">Rs.210<button class="addbutton" data-name="Cherry Pie" data-price="210"
+                        id="add-to-cart-btn">ADD +</button></p>
+
+            </div>
+            <div class="product_item" data-categories="chocolate">
+
+                <img src="{% static \'images/bostoncreampie.jpg\' %}" class="product_image">
+                <h3 class="product_name">Boston Cream Pie</h3>
+                <div class="star-rating"></div> <!-- Star rating container -->
+                <p class="price">Rs.215<button class="addbutton" data-name="Bostoncreampie Pie" data-price="215"
+                        id="add-to-cart-btn">ADD +</button></p>
+
+            </div>
+            <div class="product_item" data-categories="chocolate">
+
+                <img src="{% static \'images/peacanpie.jpg\' %}" class="product_image">
+                <h3 class="product_name">Pecan Pie</h3>
+                <div class="star-rating"></div> <!-- Star rating container -->
+                <p class="price">Rs.300<button class="addbutton" data-name="Peacanpie Pie" data-price="300"
+                        id="add-to-cart-btn">ADD +</button></p>
+
+            </div>
+        </div>
+
+    </div>
+    </div>
+
+    
+
+
+     <div id="banner">
+        <h3>What's inside the box</h3>
+        <p style="text-align: justify;"> Refrigerated pie crust<br>
+            4 Cups Fresh Strawberries - sliced<br>
+            3/4 Cup Sugar<br>
+            2 Tablespoons Cornstarch<br>
+            1 package of strawberry flavored gelatin<br>
+        <p style="text-align: center;">Serves 8</p>
+        </p>
+    </div> 
+
+    
+    
+
+
+
+    <script>
+        
+        
+        $(document).ready(function() {
+            // Event listener for changing servings
+            $('.servings-dropdown').change(function() {
+                var servings = $(this).val();
+                var productItem = $(this).closest('.product_item');
+                var pricePerServing = productItem.data('price-per-serving');
+                var totalPrice = servings * pricePerServing;
+                productItem.find('.price').html('Rs.' + totalPrice + '<button class="addbutton" data-name="' + productItem.find('.product_name').text().trim() + '" data-price="' + totalPrice + '">ADD +</button>');
+            });
+        
+            // Rest of your existing code
+        });
+        
+        $(document).ready(function() {
+            // Event listener to show banner on clicking a product
+            $('.product_item').click(function() {
+                var productName = $(this).find('.product_name').text().trim();
+                if (productName === 'Strawberry Pie') {
+                    $('#banner').show();
+                    $('#content-container').addClass('blur'); // Add blur class to content container
+                }
+            });
+        
+            // Event listener to hide banner on clicking outside of it
+            $(document).on('click', function(e) {
+                if (!$(e.target).closest('#banner').length && !$(e.target).is('.product_item')) {
+                    $('#banner').hide();
+                    $('#content-container').removeClass('blur'); // Remove blur class from content container
+                }
+            });
+        });
+         // Event listener to show banner 2 on clicking "Contact Us"
+    
+
+        
+    </script>
+
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            
+        
+            // Event listener to show banner on clicking a product
+            $('.product_item').click(function () {
+                var productName = $(this).find('.product_name').text().trim();
+                if (productName === 'Strawberry Pie') {
+                    $('#banner').show();
+                    $('#content-container').addClass('blur'); // Add blur class to content container
+                    updateBoxContent(productName, $('.servings-dropdown').val());
+                }
+            });
+        
+            // Event listener for changing servings
+            $('.servings-dropdown').change(function () {
+                var productName = $(this).closest('.product_item').find('.product_name').text().trim();
+                updateBoxContent(productName, $(this).val());
+            });
+        
+            // Function to update box content
+            function updateBoxContent(productName, servings) {
+                var boxContent = '';
+                if (productName === 'Strawberry Pie') {
+                    // Update box content dynamically based on product and servings
+                    var servingsText = servings == 1 ? 'Serves ' + servings : 'Serve ' + servings;
+                    boxContent += 'Refrigerated pie crust<br>';
+                    boxContent += servings + ' Cups Fresh Strawberries - sliced<br>';
+                    boxContent += (3 / 4) * servings + ' Cup Sugar<br>';
+                    boxContent += (2 * servings) + ' Tablespoons Cornstarch<br>';
+                    boxContent += '1 package of strawberry flavored gelatin<br>';
+                    boxContent += '<p style="text-align: center;">' + servingsText + '</p>';
+                }
+                $('#box-content').html(boxContent);
+            }
+        
+            // Event listener to hide banner on clicking outside of it
+            $(document).on('click', function (e) {
+                if (!$(e.target).closest('#banner').length && !$(e.target).is('.product_item')) {
+                    $('#banner').hide();
+                    $('#content-container').removeClass('blur'); // Remove blur class from content container
+                }
+            });
+        
+            // Rest of your existing code
+        });
+        
+        
+
+
+
+
+
+
+
+        $(document).ready(function () {
+            $('.filterbutton').click(function () {
+                $('.filteroptions').toggle();
+            });
+
+            $('.filter').change(function () {
+                updateProductDisplay();
+            });
+
+            $('.addbutton').click(function () {
+                var productName = $(this).data('name');
+                var productPrice = $(this).data('price');
+                var productImage = $(this).closest('.product_item').find('.product_image').attr('src'); // Get the image source
+                addToCart(productName, productPrice, productImage);
+            });
+
+            function updateProductDisplay() {
+                var selectedFilters = $('.filter:checked').map(function () {
+                    return $(this).data('category');
+                }).get();
+
+                if (selectedFilters.length > 0) {
+                    $('.product_item').hide();
+                    selectedFilters.forEach(function (filter) {
+                        $('.product_item[data-categories*="' + filter + '"]').show();
+                    });
+                } else {
+                    $('.product_item').show();
+                }
+            }
+
+            function addToCart(name, price, image) {
+                // Add the item to localStorage
+                var cart = JSON.parse(localStorage.getItem('cart')) || [];
+                cart.push({ name: name, price: price, image: image }); // Include the image path
+                localStorage.setItem('cart', JSON.stringify(cart));
+
+                // Update the cart total
+                updateCartTotal(price);
+            }
+
+
+            function updateCartTotal(price) {
+                var currentTotal = parseInt($('#cart-total').text().replace('Rs.', ''));
+                $('#cart-total').text('Rs.' + (currentTotal + price));
+            }
+        });
+
+
+        $(document).ready(function () {
+            // Function to generate star ratings
+            function generateStarRating(rating) {
+                var stars = '';
+                for (var i = 1; i <= 5; i++) {
+                    if (i <= rating) {
+                        stars += '<span><i class="fas fa-star"></i></span>';
+                    } else {
+                        stars += '<span><i class="far fa-star"></i></span>';
+                    }
+                }
+                return stars;
+            }
+
+            // Function to update star ratings
+            function updateStarRating(element, rating) {
+                var stars = generateStarRating(rating);
+                $(element).html(stars);
+            }
+
+            // Sample ratings (you can replace with actual ratings from your data)
+            var sampleRatings = {
+                "Strawberry Pie": 5,
+                "Lime Pie": 3,
+                "Blueberry Pie": 5,
+                "Peach Pie": 3,
+                "Apple Pie": 4,
+                "Cherry Pie": 3,
+                "Boston Cream Pie": 4,
+                "Pecan Pie": 5
+                // Add ratings for other products
+            };
+
+            // Update star ratings for each product
+            $('.product_item').each(function () {
+                var productName = $(this).find('.product_name').text().trim();
+                var rating = sampleRatings[productName];
+                var starRatingContainer = $(this).find('.star-rating');
+                updateStarRating(starRatingContainer, rating);
+            });
+        });
+    </script>
+</body>
+
+</html>

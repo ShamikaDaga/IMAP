@@ -1,0 +1,120 @@
+
+<html>
+
+{% load static %}<head>
+    
+    <title>Sign in page</title>
+    <link href="{% static 'css/signup.css' %}" rel="stylesheet">
+    
+</head>
+<body>
+
+    <form onsubmit="return validateForm()">
+        <h2>Sign in</h2>
+        <button>Continue with Google</button>
+        <p>or</p>
+        <input type="text" id="email_id" placeholder="Email">
+        <p class="error" id="emailerror"></p>
+        <input type="password" id="pwd" placeholder="Password">
+        <p class="error" id="passerror"></p>
+        <br>
+        <button type="submit" onclick="validate()">Sign in</button><br>
+        <a href="{% url 'home' %}">Go back to Home</a>
+        
+    </form>
+
+    <script>
+        function validateForm() {
+           
+            document.getElementById("emailerror").innerHTML = "";
+            document.getElementById("passerror").innerHTML = "";
+         
+            var email = document.getElementById("email_id").value;
+            var email_arr = email.split("@");
+
+            if(email.split("")==""||email.split("")==null){
+                document.getElementById("emailerror").innerHTML = "Email cannot be left empty!";
+                return false;
+
+            }
+            
+            if (email_arr.length === 2) {
+                var email_name = email_arr[0];
+                var email_name_arr = email_name.split("");
+                for (var i = 0; i < email_name_arr.length; i++) {
+                    if (!(email_name_arr[i] >= 'A' && email_name_arr[i] <= 'Z' || email_name_arr[i] >= 'a' && email_name_arr[i] <= 'z' || email_name_arr[i] >= '0' && email_name_arr[i] <= '9' || email_name_arr[i] === '.')) {
+                        document.getElementById("emailerror").innerHTML = "Email name can contain only letters, digits or '.', not special characters!";
+                        return false;
+                    }
+                }
+
+                var domain = email_arr[1];
+                var domain_arr = domain.split('.');
+
+                if (domain_arr.length >= 2) {
+                    for (var i = 0; i < domain_arr.length; i++) {
+                        if (domain_arr[i] === "" || domain_arr[i] === null) {
+                            document.getElementById("emailerror").innerHTML = "Domain cannot be blank!";
+                            return false;
+                        } else {
+                            var domain_part = domain_arr[i];
+                            var domain_part_arr = domain_part.split("");
+                            for (var j = 0; j < domain_part_arr.length; j++) {
+                                if (!(domain_part_arr[j] >= 'A' && domain_part_arr[j] <= 'Z' || domain_part_arr[j] >= 'a' && domain_part_arr[j] <= 'z')) {
+                                    document.getElementById("emailerror").innerHTML = "Domain parts can only contain letters!";
+                                    return false;
+                                }
+                            }
+                        }
+                    }
+                } else {
+                    document.getElementById("emailerror").innerHTML = "Domain name must contain at least 2 parts separated by a dot!";
+                    return false;
+                }
+            } else {
+                document.getElementById("emailerror").innerHTML = "Email can contain only 2 parts separated by an @!";
+                return false;
+            }
+
+            var password = document.getElementById("pwd").value;
+            var password_arr = password.split("");
+            var letter_counter = 0;
+            var num_counter = 0;
+            var capital_counter = 0;
+
+            if (password_arr === "" || password_arr === null) {
+                document.getElementById("passerror").innerHTML = "Password cannot be empty!";
+                return false;
+            }
+
+            if (password_arr.length >= 8) {
+                for (var i = 0; i < password_arr.length; i++) {
+                    if (!(password_arr[i] >= 'A' && password_arr[i] <= 'Z' || password_arr[i] >= 'a' && password_arr[i] <= 'z' || password_arr[i] >= '0' && password_arr[i] <= '9')) {
+                        document.getElementById("passerror").innerHTML = "Password can only contain letters and digits, not special characters!";
+                        return false;
+                    }
+
+                    if (password_arr[i] >= 'A' && password_arr[i] <= 'Z' || password_arr[i] >= 'a' && password_arr[i] <= 'z') {
+                        letter_counter++;
+                        if (password_arr[i] >= 'A' && password_arr[i] <= 'Z') {
+                            capital_counter++;
+                        }
+                    } else if (password_arr[i] >= '0' && password_arr[i] <= '9') {
+                        num_counter++;
+                    }
+                }
+
+                if (capital_counter === 0 || num_counter === 0 || letter_counter === 0) {
+                    document.getElementById("passerror").innerHTML = "Password must be alphanumeric and must contain at least 1 capital letter";
+                    return false;
+                }
+            } else {
+                document.getElementById("passerror").innerHTML = "Password must contain at least 8 characters!";
+                return false;
+            }
+
+            return true; 
+        }
+    </script>
+</body>
+</html>
